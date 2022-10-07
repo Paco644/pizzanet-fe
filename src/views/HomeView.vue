@@ -1,18 +1,11 @@
 <template>
-  <hello-world />
+  <h1>{{$t('hello')}}</h1>
+  <h1>{{$n(10, 'currency')}}</h1>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
-// Components
-import HelloWorld from '../components/HelloWorld.vue';
-
 export default defineComponent({
   name: 'HomeView',
-
-  components: {
-    HelloWorld,
-  },
 });
 </script>

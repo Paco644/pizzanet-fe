@@ -5,26 +5,37 @@ import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
 import { createI18n } from 'vue-i18n'
 
-// const messages = {
-//   enUS: {
-//     message: {
-//       hello: 'Hello World!'
-//     }
-//   },
-//   deDE: {
-//     message: {
-//       hello: 'Hallo Welt!'
-//     }
-//   }
-// }
+import enUS from './locales/en-US.json'
+import deDE from './locales/de-DE.json'
 
-// const i18n = createI18n({
-//   locale: 'en',
-//   fallbackLocale: 'de',
-//   allowComposition: true,
-// })
+type MessageSchema = typeof deDE;
 
-loadFonts()
+const i18n = createI18n<[MessageSchema], 'de-DE' | 'en-US'>({
+  locale: 'de-DE',
+  fallbackLocale: 'en-US',
+  messages: {
+    'de-DE': deDE,
+    'en-US': enUS
+  },
+  numberFormats: {
+    'en-US': {
+      currency: {
+        style: 'currency',
+        currencyDisplay: 'symbol',
+        currency: 'USD'
+      }
+    },
+    'de-DE': {
+      currency: {
+        style: 'currency',
+        currencyDisplay: 'symbol',
+        currency: 'EUR'
+      }
+    }
+  }
+})
+
+loadFonts();
 
 createApp(App).use(i18n)
   .use(router)
